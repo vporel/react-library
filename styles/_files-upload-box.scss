@@ -1,0 +1,109 @@
+.files-upload-box{
+    margin:5px 0;   
+    padding:5px;
+
+    .files{
+        .placeholder-box{
+            cursor:pointer;
+            border:2px solid _rgb(200);
+            background:_rgb(230);
+            color:_rgb(150);
+            text-align: center;
+            @include padding-y(15px);
+            @include flex-center;
+        }
+        .__file-transfer{
+            color:darken($primary-color, 10%);
+            position:relative;
+            &__container{position:relative;}
+            &__infos{
+                display:flex;
+                justify-content: space-between;
+            }
+            &__progress__bar{
+                background:$primary-color;
+                height:2px;
+            }
+            .btn-remove{
+                color:darken(red, 10%);
+                display:none;
+                font-size:2rem;
+                cursor: pointer;
+                &:hover{color:red;}
+            }
+            &.uploaded{
+                color:$text-color;
+                .btn-remove{display:block;}
+                
+                .__file-transfer__progress__bar{display:none;}
+            }
+        }
+        &.lines{
+            .__file-transfer{
+                margin-top:3px;
+                display:flex;
+                &__container{width:100%;}
+                &__infos{background:_rgb(240);padding:3px;}
+                .btn-remove{
+                    @include padding-x(3px);
+                }
+                
+            }
+            .placeholder-box{
+                width:100%;
+                margin-top:5px;
+            }
+            .thumbnail{display:none;}
+        }
+        &.blocks{
+            display:flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            >div{
+                width:24%;
+                height:100px;
+                overflow:hidden;
+                @media #{$media-md-max}{
+                    width:48.5%;
+                }
+            }
+            .__file-transfer{
+                border:1px solid gray;
+                .thumbnail{
+                    text-align:center;
+                    .image{width:100%;}
+                    .icon{font-size:6rem; margin-top:5px;}
+                }
+                &__container{height:100%;}
+                &__infos{
+                    display:flex;
+                    justify-content: space-between;
+                    position:absolute;
+                    bottom:0;left:0;width:100%;
+                    background:_rgb(240);
+                    height:25px;
+                }
+                &__progress-percentage-wrapper{display:none;}
+                .btn-remove{
+                    position:absolute;
+                    z-index:2;
+                    top:5px; right:5px;
+                }
+                
+            }
+            .__file-transfer__progress__bar{
+                height:4px;
+            }
+        }
+    }
+    &.drag-active{
+        box-shadow: 0 0 8px rgba(black, .4);
+        .files{
+            .placeholder-box{
+                border-color:$primary-color; 
+                background:rgba($primary-color, .4);
+                color:darken($primary-color, 10%);
+            }
+        }
+    }
+}

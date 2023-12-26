@@ -1,0 +1,42 @@
+.message-form{
+    position: relative;
+
+    .attachments{
+        .item{
+            cursor: pointer;
+            .icon{
+                transition: all .3s ease;
+                font-size: 2rem;
+            }
+            &:hover{
+                .icon{
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+    
+    &.minimized{
+        .files-upload-box{
+            .placeholder-box{font-size: .8rem;}
+            .files.blocks > div{width: 32%;}
+        }
+    }
+
+    &:not(.multiline){
+        .attachments, .files-upload-box{
+            position: absolute;
+            z-index: 3;
+            width: calc(100% - 10px);
+            min-height: calc(100% + 10px);
+            bottom: 5px; left: 5px;
+            border-radius: 10px;
+            background: white; box-shadow: 1px 1px 3px rgba(black, .3);
+            padding: 10px;
+        }
+
+        .files-upload-box{
+            bottom: calc(100%);
+        }
+    }
+}

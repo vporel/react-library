@@ -1,0 +1,43 @@
+.extra-options{
+    position:absolute;
+    right: 5px;
+    top:5px;
+    z-index:1;
+    &__opener{
+        margin-left:5px;
+        cursor: pointer;
+        &:hover{color:$primary-color;}
+    }
+    &__container{
+        position:absolute;
+        top:calc(100% + 5px);right:0;
+        background:white;
+        z-index:5;
+        padding:5px;
+        border-radius:5px;
+        box-shadow:0 0 3px rgba(black, .3);
+        width: auto;
+        min-width: 225px;
+        max-width: 300px;
+    }
+    &__option{
+        background:none;
+        width:100%;
+        border:none;
+        border-radius: 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        color: $text-color!important;
+        gap: 5px;
+        padding:3px 5px;
+        transition:all .3s ease;
+        text-align: start;
+        .icon{
+            width: 30px;
+        }
+        &:hover{
+            background:_rgb(245);
+        }
+    }
+}
