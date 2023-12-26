@@ -1,8 +1,8 @@
 /**
  * @author Vivian NKOUANANG (https://github.com/vporel) <dev.vporel@gmail.com>
  */
-import { classNames } from '../dom.js'
-import Loader from './Loader.jsx'
+import { classNames } from '@vporel/js/dom'
+import Loader from './Loader'
 import React from "react"
 
 export function ButtonPrimary ({ children, ...props }) {

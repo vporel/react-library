@@ -1,6 +1,6 @@
 import Avatar from "./Avatar"
 import { format } from 'date-fns'
-import { parseDate } from '../date'
+import { parseDate } from '@vporel/js/date'
 import LinkTag from './LinkTag'
 import React from "react"
 

@@ -1,7 +1,7 @@
 /**
  */
 import { Image } from "react-bootstrap"
-import FlexCenter from "./display/FlexCenter"
+import FlexCenter from "@vporel/js/components/FlexCenter"
 import React from "react"
 
 /**

@@ -1,4 +1,4 @@
-import { range } from "../array";
+import { range } from "@vporel/js/array";
 import React from "react"
 
 /**

@@ -1,4 +1,4 @@
-import FlexCenter from "./display/FlexCenter"
+import FlexCenter from "@vporel/js/components/FlexCenter"
 import { CircularProgress } from "@mui/material"
 import React from "react"
 

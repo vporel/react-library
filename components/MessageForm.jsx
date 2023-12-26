@@ -1,6 +1,6 @@
 
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
-import _ from "../translator"
+import _ from "@vporel/js/translator"
 import $ from 'jquery'
 import { FilesUploadBox } from "./FilesUploadBox"
 import { ButtonLight, ButtonPrimary } from "./Button"

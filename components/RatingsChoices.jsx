@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react"
-import { range } from "../array"
+import { range } from "@vporel/js/array"
 
 export default function RatingsChoices({rating, onRate}){
     const [messageVisible, setMessageVisible] = useState(false)

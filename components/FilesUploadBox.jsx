@@ -5,10 +5,10 @@
  */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import $ from 'jquery'
-import FileUploader from "../classes/FileUploader";
+import FileUploader from "@vporel/js/classes/FileUploader";
 import "cropperjs/dist/cropper.min.css"
 import Cropper from 'cropperjs'
-import { onMobile } from "../standard";
+import { onMobile } from "@vporel/js/standard";
 
 
 function $transferZone(fileName){

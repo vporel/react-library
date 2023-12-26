@@ -1,4 +1,4 @@
-import { classNames } from "../dom";
+import { classNames } from "@vporel/js/dom";
 import React from "react"
 
 export default function FlexCenter({className, children, ...props}){

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, createContext} from "react";
 import { Modal } from "react-bootstrap";
-import _ from "../translator";
+import _ from "@vporel/js/translator";
 import { ButtonLight, ButtonPrimary } from "../components/Button";
 import { TextField } from "@mui/material";
 

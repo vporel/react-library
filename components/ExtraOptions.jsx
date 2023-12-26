@@ -1,5 +1,5 @@
 import { useToggle } from "../hooks"
-import FlexCenter from "./display/FlexCenter"
+import FlexCenter from "@vporel/js/components/FlexCenter"
 import React, { useEffect, useRef } from "react"
 
 /**

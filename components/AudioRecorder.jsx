@@ -1,6 +1,6 @@
 import { ButtonLight } from "./Button"
 import React, { useCallback, useEffect, useState } from "react"
-import _ from "../translator"
+import _ from "@vporel/js/translator"
 import { Spinner } from "react-bootstrap"
 
 export default function AudioRecorder({onAudioRecorded, onError, reset, onReset}){
