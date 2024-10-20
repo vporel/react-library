@@ -79,8 +79,8 @@ export function DialogBoxesContextProvider({children}){
                 <p>{alertConfirmMsg}</p>
             </Modal.Body>
             <Modal.Footer className="border-0">
-                <ButtonPrimary onClick={alertConfirmAction1}>{alertConfirmType == "alert" ? "OK" : _("Yes")}</ButtonPrimary>
-                {alertConfirmType == "confirm" && <ButtonLight onClick={alertConfirmAction2}>{_("No")}</ButtonLight>}     
+                <ButtonPrimary onClick={alertConfirmAction1}>{alertConfirmType == "alert" ? "OK" : _("Yes", "Oui")}</ButtonPrimary>
+                {alertConfirmType == "confirm" && <ButtonLight onClick={alertConfirmAction2}>{_("No", "No")}</ButtonLight>}     
             </Modal.Footer>
         </Modal>
 
@@ -94,7 +94,7 @@ export function DialogBoxesContextProvider({children}){
             </Modal.Body>
             <Modal.Footer className="border-0">
                 <ButtonPrimary onClick={() => inputAction1(inputValue)} loading={inputAction1Loading} iconName={inputOptions.okButtonIcon}>{inputOptions.okButtonText ? inputOptions.okButtonText : "OK"}</ButtonPrimary>
-                <ButtonLight onClick={inputAction2}>{inputOptions.cancelButtonText ? inputOptions.cancelButtonText : _("Cancel")}</ButtonLight> 
+                <ButtonLight onClick={inputAction2}>{inputOptions.cancelButtonText ? inputOptions.cancelButtonText : _("Cancel", "Annuler")}</ButtonLight> 
             </Modal.Footer>
         </Modal>
 

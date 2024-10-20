@@ -62,7 +62,7 @@ export function Button ({ children, type="button", btnClass='', className = '', 
   return (
     <button type={type} className={className} disabled={loading || disabled} {...props}>
       {loading 
-        ? <Loader className='icon py-0' size={30} />
+        ? <Loader className='icon py-0' size={20} color="white" />
         : (iconName != null && <i className={iconName}></i>)
       }
       {children}

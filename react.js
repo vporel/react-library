@@ -1,5 +1,5 @@
 
-import { dashToCamelCase } from '@vporel/js/string';
+import { dashToCamelCase } from '@vporel/js/strings';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -24,7 +24,7 @@ export function loadComponent(Component, HTMLElement, props = {}){
         }
     }
     // Render your React component instead
-    const root = createRoot(document.getElementById('app'));
+    const root = createRoot(HTMLElement);
     root.render(<Component {...props}/>);
 }
 

@@ -1,44 +1,38 @@
-import React, { useCallback, useRef, createContext} from "react";
-import $ from "jquery"
+import { Alert, Box, Fade, Snackbar } from "@mui/material";
+import React, { useCallback, useRef, createContext, useState} from "react";
 
 const ToastContext = createContext({})
 
-
-const TYPES = ["normal", "success", "warning", "error"]
-let toastVisibilityTime = 0
-let toastVisibilityTimer = null
+const DEFAULT_VISIBILITY_DURATION = 4 //4s
 
 export function ToastContextProvider({children}){
-    const boxRef = useRef(null)
-    const _toast = useCallback((message, duration = 3, type) => {
-        const $box = $(boxRef.current)
-        $box.text(message)
-        $box.removeClass(TYPES.join(" "))
-        $box.addClass(type)
-        //Visibility time
-        toastVisibilityTime += parseInt(duration)
-        $box.fadeIn(500)
-        if(!toastVisibilityTimer){
-            toastVisibilityTimer = setInterval(() => {
-                if(toastVisibilityTime == 0){
-                    clearInterval(toastVisibilityTimer)
-                    toastVisibilityTimer = null
-                    toastVisibilityTime = 0
-                    $box.fadeOut(500)
-                }
-                toastVisibilityTime--
-            }, 1000)
-        }
-    }, [boxRef])
+    const [toastVisible, setToastVisible] = useState(false)
+    const [infos, setInfos] = useState({message: "", duration: 0, type: "default"})
+
+    const showToast = useCallback((message, duration, type) => {
+        setInfos({message, duration, type})
+        setToastVisible(true)
+    }, [])
 
     return <ToastContext.Provider value={{
-        toast: (message, duration = 3) => _toast(message, duration, "normal"), 
-        toastSuccess: (message, duration = 3) => _toast(message, duration, "success"), 
-        toastWarning: (message, duration = 3) => _toast(message, duration, "warning"), 
-        toastError: (message, duration = 3) => _toast(message, duration, "error"),
-        toastInfo: (message, duration = 3) => _toast(message, duration, "info"),
+        toast: useCallback((message, duration = DEFAULT_VISIBILITY_DURATION) => showToast(message, duration, "default"), []), 
+        toastSuccess: useCallback((message, duration = DEFAULT_VISIBILITY_DURATION) => showToast(message, duration, "success"), []), 
+        toastWarning: useCallback((message, duration = DEFAULT_VISIBILITY_DURATION) => showToast(message, duration, "warning"), []), 
+        toastError: useCallback((message, duration = DEFAULT_VISIBILITY_DURATION) => showToast(message, duration, "error"), []),
+        toastInfo: useCallback((message, duration = DEFAULT_VISIBILITY_DURATION) => showToast(message, duration, "info"), []),
     }}>
-        <div ref={boxRef} className="toast-box"></div>
+        {infos.type == "default" 
+            ?  <Snackbar open={toastVisible} autoHideDuration={infos.duration*1000} onClose={() => setToastVisible(false)} message={infos.message} anchorOrigin={{vertical: "bottom", horizontal: "center"}} />
+            : <Snackbar open={toastVisible} autoHideDuration={infos.duration*1000} onClose={() => setToastVisible(false)} anchorOrigin={{vertical: "bottom", horizontal: "center"}}>
+                <Alert 
+                    onClose={() => setToastVisible(false)}
+                    variant="filled"
+                    severity={infos.type}
+                    sx={{width: "100%"}}
+                >{infos.message}</Alert>
+            </Snackbar>
+        }
+
         {children}
     </ToastContext.Provider>
 }

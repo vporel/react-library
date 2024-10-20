@@ -1,6 +1,6 @@
 import { useToggle } from "../hooks"
 import FloatingComponentOpener from "./FloatingComponentOpener"
-import React from "react"
+import React, {Fragment} from "react"
 
 export default function FloatingComponent({openerProps, openerBadgeProps, children}){
     const [visible, toggleVisible] = useToggle(false)

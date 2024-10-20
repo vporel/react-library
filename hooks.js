@@ -32,7 +32,10 @@ export function useBooleanState(defaultValue = false){
  * Custom useSearchPArams hook
  */
 export function useSearchParams(){
-    const {search} = useLocation()
+    let search = window.location.search
+    try{ search = useLocation().search } //If a router exists
+    catch{  }
+
     const params = useMemo(() => {
         const prs = {}
         const urlSearchParams = new URLSearchParams(search)
@@ -44,13 +47,12 @@ export function useSearchParams(){
 
 /**
  * Filter using the url search query
- * @param {array} options 
+ * @param {array} keys 
  */
 export function useSearchFilter(keys){
     const searchParams = useSearchParams()
-    const initialValues = {page: searchParams.k}
+    const initialValues = {page: searchParams.page ?? 1}
     for(const k of keys) initialValues[k] = searchParams[k] ?? ""
-    initialValues.page = searchParams.page ?? 1
     const [options, setOptions] = useState(initialValues)
     const navigate = useNavigate()
     const filter = useCallback((name, value) => {
@@ -105,11 +107,13 @@ export function useCommentsState(parentId, loadFunction, sendFunction, options){
     }, [loadFunction, setLoading, setComments, comments, setOtherResults, parentId])
 
     //Chargement asynchrone des commentaires lorsque loaded passe à true
-    useEffect(async function(){
-        if(visible && !commentsLoaded){
-            loadComments()
-            setCommentsLoaded(true);
-        }
+    useEffect(() => {
+        (async function(){
+            if(visible && !commentsLoaded){
+                loadComments()
+                setCommentsLoaded(true);
+            }
+        })()
     }, [commentsLoaded, setCommentsLoaded, visible])
 
     //Send the written comment
@@ -133,15 +137,17 @@ export function usePaginator(getFunction, options){
     const [page, setPage] = useState(1)
     const [pagesCount, setPagesCount] = useState(1)
     const [total, setTotal] = useState(0)
-    useEffect(async () => {
-        setElements(null)
-        const response = await getFunction(options)
-        if(response.status == 1){
-            setElements(response.data)
-            setPage(response.page)
-            setPagesCount(response.pagesCount)
-            setTotal(response.total)
-        }
+    useEffect(() => {
+        (async () => {
+            setElements(null)
+            const response = await getFunction(options)
+            if(response.status == 1){
+                setElements(response.data)
+                setPage(response.page)
+                setPagesCount(response.pagesCount)
+                setTotal(response.total)
+            }
+        })()
     }, [getFunction, options, setElements, setPage, setPagesCount, setTotal])
     
     return [elements, page, pagesCount, total]
